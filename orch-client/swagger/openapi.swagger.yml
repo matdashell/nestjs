@@ -1,0 +1,84 @@
+
+openapi: '3.0.3'
+info:
+  title: 'API Title'
+  version: '1.0.0'
+tags:
+  - name: customer
+paths:
+  /customers/{customerId}:
+    get:
+      tags:
+        - customer
+      operationId: 'getCustomerById'
+      parameters:
+        - in: path
+          name: customerId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerResponse'
+  /customers:
+    post:
+      tags:
+        - customer
+      operationId: 'getCustomerById'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerCreateRequest'
+      responses:
+        '201':
+          description: 'success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerResponse'
+components:
+  schemas:
+    CustomerCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          pattern: ^[\\w]$
+          maxLength: 60
+          minLength: 3
+          example: Mario
+        age:
+          type: integer
+          minimum: 18
+          maximum: 80
+          example: 18
+        document:
+          type: string
+          pattern: ^[\\d]$
+          maxLength: 14
+          minLength: 11
+          example: 11122233344
+    CustomerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        accountId:
+          type: string
+          example: 2064-8525
+        name:
+          type: string
+          example: Mario
+        age:
+          type: integer
+          example: 18
+        document:
+          type: string
+          example: 11122233344

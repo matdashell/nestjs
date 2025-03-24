@@ -1,0 +1,11 @@
+.gitignore
+README.md
+api.module.ts
+api/account.service.ts
+api/api.ts
+configuration.ts
+git_push.sh
+index.ts
+model/accountResponse.ts
+model/models.ts
+variables.ts

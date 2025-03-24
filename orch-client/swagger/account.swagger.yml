@@ -1,0 +1,52 @@
+
+openapi: '3.0.3'
+info:
+  title: 'API Title'
+  version: '1.0.0'
+tags:
+  - name: account
+paths:
+  /account/{userId}:
+    get:
+      tags:
+        - account
+      operationId: 'getAccountByUserId'
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: 'success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+  /account/user/{userId}:
+    post:
+      tags:
+        - account
+      operationId: 'postAccount'
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: 'success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+components:
+  schemas:
+    AccountResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1

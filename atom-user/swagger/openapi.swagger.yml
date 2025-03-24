@@ -1,0 +1,80 @@
+openapi: '3.0.3'
+info:
+  title: 'API Title'
+  version: '1.0.0'
+tags:
+  - name: user
+paths:
+  /users:
+    post:
+      tags:
+        - user
+      operationId: 'postUser'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+      responses:
+        '201':
+          description: 'success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+  /users/{userId}:
+    get:
+      tags:
+        - user
+      operationId: 'getUserById'
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+components:
+  schemas:
+    UserCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          pattern: ^[\\w]$
+          maxLength: 60
+          minLength: 3
+          example: Mario
+        age:
+          type: integer
+          minimum: 18
+          maximum: 80
+          example: 18
+        document:
+          type: string
+          pattern: ^[\\d]$
+          maxLength: 14
+          minLength: 11
+          example: 11122233344
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Mario
+        age:
+          type: integer
+          example: 18
+        document:
+          type: string
+          example: 11122233344
