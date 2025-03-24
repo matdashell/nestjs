@@ -7,7 +7,7 @@ export class UserCreateRequest {
   name: string
 
   @Min(18)
-  @Max(20)
+  @Max(80)
   age: number
 
   @MinLength(11)

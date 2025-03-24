@@ -1,12 +1,10 @@
-import { Body, Controller, Get, Logger, Param, Post, UseFilters } from "@nestjs/common";
+import { Body, Controller, Get, Logger, Param, Post } from "@nestjs/common";
 import { Observable, tap } from "rxjs";
-import { UserResponse } from "../api-client/user/generated";
-import { CustomerCreateRequest } from "../domain/customerCreateRequest.domain";
-import { HttpExceptionFilter } from "../handler/http.exception-filter";
+import { UserResponse } from "../../api-client/user/generated";
+import { CustomerCreateRequest } from "../domain/request/customer.create-request";
 import { CustomerService } from "../service/customer.service";
 
 @Controller("customers")
-@UseFilters(HttpExceptionFilter)
 export class CustomerController {
   constructor(
     private readonly orchestratorService: CustomerService

@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Logger, Param, Post } from "@nestjs/common"
-import { Observable, tap } from "rxjs"
-import { UserCreateRequest } from "src/domain/request/user.create-request"
-import { UserResponse } from "src/domain/response/user.response"
+import { Observable, of, switchMap, tap } from "rxjs"
+import { UserCreateRequest } from "../domain/request/user.create-request"
+import { UserResponse } from "../domain/response/user.response"
 import { UserService } from "../service/user.service"
 
-@Controller('user')
+@Controller('users')
 export class UserController {
 
   constructor(
@@ -17,7 +17,7 @@ export class UserController {
   getUser(@Param('userId') userId: number): Observable<UserResponse> {
     this.logger.log(`getting user by id ${userId}`)
     return this.userService.getById(userId).pipe(
-      tap(response => this.logger.log(`user response ${response}`))
+      tap(response => this.logger.log(`user response ${response}`)),
     )
   }
 

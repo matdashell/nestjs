@@ -6,7 +6,6 @@ export class ResponseModel {
 }
 
 export const ResponserError = {
-  INTERNAL_ERROR: new ResponseModel(500, 'Internal server error'),
   DATABASE_ERROR: new ResponseModel(500, 'Internal database error'),
   DOCUMENT_ERROR: new ResponseModel(400, 'Invalid user document'),
   USER_EXISTS_ERROR: new ResponseModel(400, 'Document user already exists in the system'),

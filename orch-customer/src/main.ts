@@ -4,11 +4,20 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { parse } from "yaml";
 import { AppModule } from "./app.module";
-import { GlobalExceptionFilter } from "./handler/global.exception-filter";
+import { GlobalExceptionFilter } from "./exception-filter/global.exception-filter";
+import { BadRequestExceptionFilter } from "./exception-filter/bad-request.exception-filter";
+import { HttpExceptionFilter } from "./exception-filter/http.exception-filter";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
-  app.useGlobalFilters(new GlobalExceptionFilter())
+  const app = await NestFactory.create(AppModule, {
+    logger: ['log', 'error']
+  })
+
+  app.useGlobalFilters(
+    new BadRequestExceptionFilter(),
+    new HttpExceptionFilter(),
+    new GlobalExceptionFilter()
+  )
 
   const filePath = join(__dirname, '..', 'swagger', 'openapi.swagger.yml');
   const swaggerYml = readFileSync(filePath, 'utf8');

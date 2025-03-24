@@ -1,9 +1,9 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { map, Observable, switchMap, tap } from "rxjs";
-import { AccountService } from "../api-client/account/generated";
-import { UserService } from "../api-client/user/generated";
-import { CustomerCreateRequest } from "../domain/customerCreateRequest.domain";
-import { CustomerResponse } from "../domain/customerResponse.domain";
+import { CustomerCreateRequest } from "src/infra/domain/request/customer.create-request";
+import { AccountService } from "../../api-client/account/generated";
+import { UserService } from "../../api-client/user/generated";
+import { CustomerResponse } from "../domain/response/customer.response";
 import { CustomerMapper } from "../mapper/user.mapper";
 
 @Injectable()
