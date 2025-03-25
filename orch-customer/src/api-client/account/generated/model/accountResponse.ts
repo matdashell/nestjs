@@ -13,5 +13,7 @@
 
 export interface AccountResponse { 
     id?: string;
+    userId?: number;
+    balance?: number;
 }
 

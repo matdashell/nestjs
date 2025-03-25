@@ -12,6 +12,7 @@ export class CustomerMapper {
     return {
       ...user,
       accountId: account.id,
+      accountBalance: account.balance
     }
   }
 

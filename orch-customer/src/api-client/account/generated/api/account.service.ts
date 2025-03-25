@@ -79,7 +79,7 @@ export class AccountService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<AccountResponse>(`${this.basePath}/account/${encodeURIComponent(String(userId))}`,
+                return this.httpClient.get<AccountResponse>(`${this.basePath}/account/user/${encodeURIComponent(String(userId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...getAccountByUserIdOpts?.config,

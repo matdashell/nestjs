@@ -4,7 +4,7 @@ import { Response } from "express";
 @Catch(BadRequestException)
 export class BadRequestExceptionFilter implements ExceptionFilter {
 
-  private readonly logger = new Logger(BadRequestExceptionFilter.name)
+  private readonly logger = new Logger(BadRequestExceptionFilter.name);
 
   catch(exception: BadRequestException, host: ArgumentsHost) {
     this.logger.error(`BadRequestExceptionFilter - ${exception.message}`)

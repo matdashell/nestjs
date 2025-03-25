@@ -73,6 +73,9 @@ components:
         accountId:
           type: string
           example: 2064-8525
+        accountBalance:
+          type: number
+          example: 100.0
         name:
           type: string
           example: Mario
