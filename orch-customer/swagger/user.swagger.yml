@@ -48,7 +48,7 @@ components:
       properties:
         name:
           type: string
-          pattern: ^[\\w]$
+          pattern: ^[\\w ]+$
           maxLength: 60
           minLength: 3
           example: Mario
@@ -59,7 +59,7 @@ components:
           example: 18
         document:
           type: string
-          pattern: ^[\\d]$
+          pattern: ^[\\d]+$
           maxLength: 14
           minLength: 11
           example: 11122233344

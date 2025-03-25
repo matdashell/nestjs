@@ -7,6 +7,7 @@ import { AppModule } from './app.module';
 import { BadRequestExceptionFilter } from './exception-filter/bad-request.exception-filter';
 import { BusinessExceptionFilter } from './exception-filter/business.exception-filter';
 import { DatabaseExceptionFilter } from './exception-filter/database.exception-filter';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -18,6 +19,8 @@ async function bootstrap() {
     new BadRequestExceptionFilter(),
     new DatabaseExceptionFilter(),
   )
+
+  app.useGlobalPipes(new ValidationPipe())
 
   const filePath = join(__dirname, '..', 'swagger', 'openapi.swagger.yml');
   const swaggerYml = readFileSync(filePath, 'utf8');
