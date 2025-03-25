@@ -24,6 +24,6 @@ async function bootstrap() {
   const swaggerDocument = parse(swaggerYml);
 
   SwaggerModule.setup('swagger-ui', app, swaggerDocument)
-  await app.listen(process.env.PORT ?? 3000)
+  await app.listen(process.env.PORT ?? 3001)
 }
 bootstrap();

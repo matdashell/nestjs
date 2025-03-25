@@ -17,15 +17,15 @@ export class UserController {
   getUser(@Param('userId') userId: number): Observable<UserResponse> {
     this.logger.log(`getting user by id ${userId}`)
     return this.userService.getById(userId).pipe(
-      tap(response => this.logger.log(`user response ${response}`)),
+      tap(response => this.logger.log(`user response ${JSON.stringify(response)}`)),
     )
   }
 
   @Post()
   postUser(@Body() userRequest: UserCreateRequest): Observable<UserResponse> {
-    this.logger.log(`creating new user by request ${userRequest}`)
+    this.logger.log(`creating new user by request ${JSON.stringify(userRequest)}`)
     return this.userService.createUser(userRequest).pipe(
-      tap(response => this.logger.log(`user response ${response}`))
+      tap(response => this.logger.log(`user response ${JSON.stringify(response)}`)),
     )
   }
 }

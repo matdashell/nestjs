@@ -18,11 +18,14 @@ export class CustomerService {
 
   getCustomer(customerId: number): Observable<CustomerResponse> {
     return this.userService.getUserById(customerId).pipe(
+      map(response => response.data),
       tap(response => this.logger.log(`getUserById response ${JSON.stringify(response)}`)),
 
-      switchMap(({ data: user }) => this.accountService.getAccountByUserId(user.id as number).pipe(
+
+      switchMap(user => this.accountService.getAccountByUserId(user.id as number).pipe(
+        map(response => response.data),
         tap(response => this.logger.log(`getAccountByUserId response ${JSON.stringify(response)}`)),
-        map(({ data: account }) => this.userMapper.userAndAccountToUserResponseController(user, account)
+        map((account) => this.userMapper.userAndAccountToUserResponseController(user, account)
         ))
       ))
   }
@@ -30,11 +33,13 @@ export class CustomerService {
   postCustomer(customerCreate: CustomerCreateRequest): Observable<CustomerResponse> {
     const userCreateRequest = this.userMapper.customerToUserRequest(customerCreate)
     return this.userService.postUser(userCreateRequest).pipe(
+      map(response => response.data),
       tap(response => this.logger.log(`postUser response ${JSON.stringify(response)}`)),
 
-      switchMap(({ data: user }) => this.accountService.postAccount(user.id as number).pipe(
+      switchMap((user) => this.accountService.postAccount(user.id as number).pipe(
+        map(response => response.data),
         tap(response => this.logger.log(`postAccount response ${JSON.stringify(response)}`)),
-        map(({ data: account }) => this.userMapper.userAndAccountToUserResponseController(user, account)
+        map((account) => this.userMapper.userAndAccountToUserResponseController(user, account)
         ))
       ))
   }

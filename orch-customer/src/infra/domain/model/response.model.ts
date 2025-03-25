@@ -5,6 +5,6 @@ export class ResponseModel {
   ) { }
 }
 
-export const ResponserError = {
-  INTERNAL_ERROR: new ResponseModel(500, 'Internal server error'),
+export const ResponseError = {
+  REQUEST_ERROR: new ResponseModel(500, 'Unexpected internal request error')
 }

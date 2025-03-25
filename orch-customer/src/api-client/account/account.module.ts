@@ -10,7 +10,7 @@ import { ApiModule, Configuration } from "./generated";
       headers: {}
     }),
     ApiModule.forRoot(() => new Configuration({
-      basePath: 'http://localhost:0000',
+      basePath: 'http://localhost:3002',
     }))
   ],
   providers: [AuthInterceptor],

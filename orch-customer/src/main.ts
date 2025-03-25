@@ -4,9 +4,8 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { parse } from "yaml";
 import { AppModule } from "./app.module";
-import { GlobalExceptionFilter } from "./exception-filter/global.exception-filter";
 import { BadRequestExceptionFilter } from "./exception-filter/bad-request.exception-filter";
-import { HttpExceptionFilter } from "./exception-filter/http.exception-filter";
+import { AxiosExceptionFilter } from "./exception-filter/axios.exception-filter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -15,8 +14,7 @@ async function bootstrap() {
 
   app.useGlobalFilters(
     new BadRequestExceptionFilter(),
-    new HttpExceptionFilter(),
-    new GlobalExceptionFilter()
+    new AxiosExceptionFilter()
   )
 
   const filePath = join(__dirname, '..', 'swagger', 'openapi.swagger.yml');

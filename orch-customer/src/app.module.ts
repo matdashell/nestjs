@@ -16,4 +16,4 @@ import { CustomerService } from "./infra/service/customer.service";
     CustomerMapper
   ]
 })
-export class AppModule {}
+export class AppModule { }

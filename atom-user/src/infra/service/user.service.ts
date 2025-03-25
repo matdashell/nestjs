@@ -19,7 +19,7 @@ export class UserService {
 
   getById(userId: number): Observable<UserResponse> {
     return this.repository.findOneById(userId).pipe(
-      tap(entity => this.logger.log(`find one by id return ${entity}`)),
+      tap(entity => this.logger.log(`find one by id return ${JSON.stringify(entity)}`)),
       map(entity => this.userMapper.entityToResponse(entity))
     )
   }
@@ -29,7 +29,7 @@ export class UserService {
 
     return this.userValidator.validCreate(userRequest.document).pipe(
       switchMap(() => this.repository.create(userRequest)),
-      tap(entity => this.logger.log(`create user return ${entity}`)),
+      tap(entity => this.logger.log(`create user return ${JSON.stringify(entity)}`)),
       map(entity => this.userMapper.entityToResponse(entity))
     )
   }
